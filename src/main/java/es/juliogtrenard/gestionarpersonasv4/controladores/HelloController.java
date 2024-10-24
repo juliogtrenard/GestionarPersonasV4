@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -69,5 +71,35 @@ public class HelloController {
             listaPersonas.add(persona);
             tvTabla.getItems().add(persona);
         }
+    }
+
+    @FXML
+    public void modificarPersona(ActionEvent event) throws IOException {
+        if(tvTabla.getSelectionModel().getSelectedItem() == null) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR, "Seleccione una persona.");
+            alerta.setHeaderText(null);
+            alerta.setTitle("ERROR:");
+            Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/img/library_icon.png"))));
+            alerta.showAndWait();
+            return;
+        }
+
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/es/juliogtrenard/gestionarpersonasv4/modal.fxml"));
+        Parent root = loader.load();
+
+        stage.setScene(new Scene(root));
+        stage.setTitle("Editar Persona");
+
+        stage.setMinWidth(500);
+        stage.setMinHeight(200);
+        stage.setMaxWidth(500);
+        stage.setMaxHeight(200);
+
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node)event.getSource()).getScene().getWindow());
+        stage.showAndWait();
     }
 }
