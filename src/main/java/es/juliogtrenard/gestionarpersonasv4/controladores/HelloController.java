@@ -73,16 +73,18 @@ public class HelloController {
         }
     }
 
+    /**
+     * Maneja el evento de modificar una persona existente en la lista.
+     * Abre una ventana modal con el formulario para editar los datos de la persona seleccionada.
+     * Si la persona se edita correctamente, se actualiza en la lista y en la tabla.
+     *
+     * @param event El evento que activa este metodo.
+     */
     @FXML
     public void modificarPersona(ActionEvent event) throws IOException {
         Persona personaSeleccionada = tvTabla.getSelectionModel().getSelectedItem();
         if (personaSeleccionada == null) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR, "Seleccione una persona.");
-            alerta.setHeaderText(null);
-            alerta.setTitle("ERROR:");
-            Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/img/library_icon.png"))));
-            alerta.showAndWait();
+            error();
             return;
         }
 
@@ -110,5 +112,49 @@ public class HelloController {
             listaPersonas.set(indice, controller.getPersona());
             tvTabla.getItems().set(indice, controller.getPersona());
         }
+    }
+
+    /**
+     * Maneja el evento de eliminar una persona de la lista.
+     * Elimina la persona seleccionada de la lista y de la tabla.
+     *
+     * @param event El evento que activa este metodo.
+     */
+    @FXML
+    public void eliminarPersona(ActionEvent event) {
+        Persona personaSeleccionada = tvTabla.getSelectionModel().getSelectedItem();
+        if (personaSeleccionada == null) {
+            error();
+            return;
+        }
+
+        listaPersonas.remove(personaSeleccionada);
+        tvTabla.getItems().remove(personaSeleccionada);
+
+        confirmacion();
+    }
+
+    /**
+     * Muestra una alerta de error cuando no se selecciona una persona.
+     */
+    private void error() {
+        Alert alerta = new Alert(Alert.AlertType.ERROR, "Seleccione una persona.");
+        alerta.setHeaderText(null);
+        alerta.setTitle("ERROR:");
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/img/library_icon.png"))));
+        alerta.showAndWait();
+    }
+
+    /**
+     * Muestra una alerta de confirmación cuando se elimina una persona.
+     */
+    private void confirmacion() {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION, "Persona eliminada correctamente.");
+        alerta.setHeaderText(null);
+        alerta.setTitle("ERROR:");
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/img/library_icon.png"))));
+        alerta.showAndWait();
     }
 }
