@@ -1,4 +1,4 @@
-module:es.juliogtrenard.gestionarpersonasv3
-es.juliogtrenard.gestionarpersonasv3
-es.juliogtrenard.gestionarpersonasv3.controladores
-es.juliogtrenard.gestionarpersonasv3.modelos
+module:es.juliogtrenard.gestionarpersonasv4
+es.juliogtrenard.gestionarpersonasv4
+es.juliogtrenard.gestionarpersonasv4.controladores
+es.juliogtrenard.gestionarpersonasv4.modelos
