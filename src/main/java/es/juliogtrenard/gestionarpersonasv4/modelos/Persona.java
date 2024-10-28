@@ -58,4 +58,31 @@ public class Persona {
     public int getEdad() {
         return edad;
     }
+
+    /**
+     * Establece el nombre de la persona.
+     *
+     * @param nombre El nuevo nombre de la persona.
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * Establece los apellidos de la persona.
+     *
+     * @param apellidos Los nuevos apellidos de la persona.
+     */
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    /**
+     * Establece la edad de la persona.
+     *
+     * @param edad La nueva edad de la persona.
+     */
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
 }
