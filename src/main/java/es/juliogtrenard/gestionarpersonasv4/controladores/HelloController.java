@@ -75,7 +75,8 @@ public class HelloController {
 
     @FXML
     public void modificarPersona(ActionEvent event) throws IOException {
-        if(tvTabla.getSelectionModel().getSelectedItem() == null) {
+        Persona personaSeleccionada = tvTabla.getSelectionModel().getSelectedItem();
+        if(personaSeleccionada == null) {
             Alert alerta = new Alert(Alert.AlertType.ERROR, "Seleccione una persona.");
             alerta.setHeaderText(null);
             alerta.setTitle("ERROR:");
@@ -89,6 +90,9 @@ public class HelloController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/es/juliogtrenard/gestionarpersonasv4/modal.fxml"));
         Parent root = loader.load();
 
+        ControladorModal controller = loader.getController();
+        controller.setPersona(personaSeleccionada); // Establece la persona seleccionada en el controlador
+
         stage.setScene(new Scene(root));
         stage.setTitle("Editar Persona");
 
@@ -101,5 +105,11 @@ public class HelloController {
         stage.initOwner(
                 ((Node)event.getSource()).getScene().getWindow());
         stage.showAndWait();
+
+        if (controller.getPersona() != null) {
+            int indice = tvTabla.getSelectionModel().getSelectedIndex();
+            listaPersonas.set(indice, controller.getPersona());
+            tvTabla.getItems().set(indice, controller.getPersona());
+        }
     }
 }

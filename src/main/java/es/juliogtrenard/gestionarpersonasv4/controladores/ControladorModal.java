@@ -66,7 +66,17 @@ public class ControladorModal {
             mostrarAlertaErrores("Persona repetida");
             limpiarCampos();
         } else {
-            crearPersona();
+            if (persona != null) {
+                // Actualiza la persona existente
+                persona.setNombre(txtNombre.getText());
+                persona.setApellidos(txtApellidos.getText());
+                persona.setEdad(Integer.parseInt(txtEdad.getText()));
+
+                mostrarAlertaValido("Persona modificada correctamente.");
+            } else {
+                crearPersona();
+            }
+
             cerrarVentana(event);
         }
     }
@@ -174,14 +184,14 @@ public class ControladorModal {
 
         persona = new Persona(nombre, apellidos, edad);
 
-        mostrarAlertaValido();
+        mostrarAlertaValido("Persona añadida correctamente.");
     }
 
     /**
      * Muestra una alerta con el mensaje de confirmación proporcionado.
      */
-    private void mostrarAlertaValido() {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION, "Persona añadida correctamente.");
+    private void mostrarAlertaValido(String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION, mensaje);
         alerta.setHeaderText(null);
         alerta.setTitle("INFO:");
         Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
@@ -196,6 +206,13 @@ public class ControladorModal {
      */
     public Persona getPersona() {
         return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+        txtNombre.setText(persona.getNombre());
+        txtApellidos.setText(persona.getApellidos());
+        txtEdad.setText(String.valueOf(persona.getEdad()));
     }
 
     /**
