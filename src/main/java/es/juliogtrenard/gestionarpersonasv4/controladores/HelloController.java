@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -61,8 +62,7 @@ public class HelloController {
         stage.setMaxHeight(200);
 
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(
-                ((Node)event.getSource()).getScene().getWindow());
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.showAndWait();
 
         ControladorModal controller = loader.getController();
@@ -76,7 +76,7 @@ public class HelloController {
     @FXML
     public void modificarPersona(ActionEvent event) throws IOException {
         Persona personaSeleccionada = tvTabla.getSelectionModel().getSelectedItem();
-        if(personaSeleccionada == null) {
+        if (personaSeleccionada == null) {
             Alert alerta = new Alert(Alert.AlertType.ERROR, "Seleccione una persona.");
             alerta.setHeaderText(null);
             alerta.setTitle("ERROR:");
@@ -91,7 +91,7 @@ public class HelloController {
         Parent root = loader.load();
 
         ControladorModal controller = loader.getController();
-        controller.setPersona(personaSeleccionada); // Establece la persona seleccionada en el controlador
+        controller.setPersona(personaSeleccionada);
 
         stage.setScene(new Scene(root));
         stage.setTitle("Editar Persona");
@@ -102,8 +102,7 @@ public class HelloController {
         stage.setMaxHeight(200);
 
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(
-                ((Node)event.getSource()).getScene().getWindow());
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
         stage.showAndWait();
 
         if (controller.getPersona() != null) {

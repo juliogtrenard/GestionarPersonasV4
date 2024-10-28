@@ -67,7 +67,6 @@ public class ControladorModal {
             limpiarCampos();
         } else {
             if (persona != null) {
-                // Actualiza la persona existente
                 persona.setNombre(txtNombre.getText());
                 persona.setApellidos(txtApellidos.getText());
                 persona.setEdad(Integer.parseInt(txtEdad.getText()));
@@ -110,7 +109,7 @@ public class ControladorModal {
      * en la lista.
      *
      * @return {@code true} si la persona ya está en la lista,
-     *         {@code false} en caso contrario.
+     * {@code false} en caso contrario.
      */
     private boolean esPersonaRepetida() {
         for (Persona p : HelloController.listaPersonas) {
@@ -126,12 +125,10 @@ public class ControladorModal {
      *
      * @param p La persona a comparar.
      * @return {@code true} si los datos son iguales,
-     *         {@code false} en caso contrario.
+     * {@code false} en caso contrario.
      */
     private boolean esIgualPersona(Persona p) {
-        return p.getNombre().equalsIgnoreCase(txtNombre.getText().trim()) &&
-                p.getApellidos().equalsIgnoreCase(txtApellidos.getText().trim()) &&
-                p.getEdad() == Integer.parseInt(txtEdad.getText());
+        return p.getNombre().equalsIgnoreCase(txtNombre.getText().trim()) && p.getApellidos().equalsIgnoreCase(txtApellidos.getText().trim()) && p.getEdad() == Integer.parseInt(txtEdad.getText());
     }
 
     /**
@@ -208,6 +205,12 @@ public class ControladorModal {
         return persona;
     }
 
+    /**
+     * Establece la persona que se va a editar.
+     * Rellena los campos de la ventana modal con los datos de la persona.
+     *
+     * @param persona La persona que se va a editar.
+     */
     public void setPersona(Persona persona) {
         this.persona = persona;
         txtNombre.setText(persona.getNombre());
